@@ -1,0 +1,19 @@
+name: Test Project
+
+on:
+  pull request:
+    branchers:
+      -main
+
+jobs:
+  test:
+    runs-on:
+    container: 
+      image: node:20
+    steps:
+      -uses : actions/checkout@v3
+        with:
+          node-version:20
+      -run: npm ci
+      -run: npm test
+      -run: npm run build
